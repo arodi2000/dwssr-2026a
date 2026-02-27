@@ -1,4 +1,4 @@
-<p align="center>
+<p align="center">
   <img src="./.github/assets/ITGAM LOGO.png"
   alt="logo">
   </p>
@@ -16,8 +16,8 @@ repositorio de la materia de Desarrollo web ssr(server side rendering)
 Documentar las sprints del proyecto que se desarrollan a lo largo del curso
 
 ## 💐 RAMAS DEL PROYETCO
--dev: rama del desarrollo
--main: rama principal
+-`dev`: rama del desarrollo
+-`main`: rama principal
 
 ## ⚛️ CONVENCIONES DE COMMITS
 

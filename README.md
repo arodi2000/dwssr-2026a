@@ -16,7 +16,8 @@ repositorio de la materia de Desarrollo web ssr(server side rendering)
 Documentar las sprints del proyecto que se desarrollan a lo largo del curso
 
 ## 💐 RAMAS DEL PROYETCO
--`dev`: rama del desarrollo
+-`dev`: rama del desarrollo 
+
 -`main`: rama principal
 
 ## ⚛️ CONVENCIONES DE COMMITS

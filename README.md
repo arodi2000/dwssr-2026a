@@ -38,6 +38,11 @@ Documentar las sprints del proyecto que se desarrollan a lo largo del curso
 **EJEMPLO:** 
 > feat 🌟: agregra automatizacion de usuarios
 
+# 📚stack
+
+## back-end
+- [node](./.github/doc/node.md)
+
 #  👦 autor
 [SERGIO RAMIEZ](https://github.com/arodi2000/dwssr-2026a.git)
 

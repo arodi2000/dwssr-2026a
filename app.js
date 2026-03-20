@@ -4,7 +4,7 @@ import path from 'node:path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import { fileURLToPath } from 'node:url';
-import { dirname } from 'node:path'; //CORREGIDO
+import { dirname } from 'node:path'; //CORREGIDO Y MAS APARTE NO CERRAMOS CON PUNTO Y COMA
 
 // importando enrutadores
 import indexRouter from './routes/index.js';

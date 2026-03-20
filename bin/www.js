@@ -4,10 +4,12 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('dwssr:server');
-var info = require('debug')('dwssr:info');
-var http = require('http');
+import app from '../app.js';
+import createDebug from 'debug';
+import http from 'node:http'; // ✅ CORREGIDO
+
+const debug = createDebug('dwssr:server')
+const info = createDebug('dwssr:info')
 
 /**
  * Get port from environment and store in Express.
@@ -39,12 +41,10 @@ function normalizePort(val) {
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
-    // named pipe
     return val;
   }
 
   if (port >= 0) {
-    // port number
     return port;
   }
 
@@ -64,7 +64,6 @@ function onError(error) {
     ? 'Pipe ' + port
     : 'Port ' + port;
 
-  // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges');
@@ -88,6 +87,7 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
+
   debug('🎤Listening on ' + bind);
-  info('✅ Server is listening on ${bind}')
+  info(`✅ Server is listening on ${bind}`); // ✅ CORREGIDO
 }

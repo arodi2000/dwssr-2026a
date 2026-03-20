@@ -23,3 +23,16 @@ minimo, flexible no es impositivo tanto
 en el flujo de trabajo tanto en la arquitectura de trabajo  como en la aquitectura del proyecto.
 
 El presente proyecto estara desarrolldo en express.JS
+
+# 📦ESM
+Los ECMAScript modules(ESM) representa el estandar nativo
+para organizar y modular codigos de JavaScript
+El express Generator genera un proyecto usando el antiguo estandar
+llamado _CommonJS_ que usa las sentencias `require`
+en nuevo estandar usa `export/import`
+
+Migrar a ESM ofrece las siguientes ventajas:
+- Sintaxis moderna y consistente
+- mejor analisis estaticos
+- importaciones asincronas con `import()`
+- es el futuro del ecosistema

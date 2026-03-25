@@ -51,3 +51,4 @@ Su funcion es observar archivos en el directorio de tu proyecto y reiniciar auto
 #✂️ Aliases
 
 los **import aliasses** tambien conocidos como _path aliasses_ o _module aliasses_ son atajos o alias que podemos configurar para simplificar la forma en que importamos en nuestra aplicación.
+

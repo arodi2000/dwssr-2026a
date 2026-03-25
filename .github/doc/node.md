@@ -36,3 +36,18 @@ Migrar a ESM ofrece las siguientes ventajas:
 - mejor analisis estaticos
 - importaciones asincronas con `import()`
 - es el futuro del ecosistema
+
+Migrar a ESM Ofrece  las siguientes ventajas :
+
+-Sintaxis moderna y consistentes
+-Mejora analisis estatico**
+-Importacion asincronas con `import()`
+-Es el futuro del ecosistema
+
+#🎯Nodemon
+[Nodemon](http://nodemon.io/) es un paquete que actua como _wrapper_(envoltorio) para node.js
+Su funcion es observar archivos en el directorio de tu proyecto y reiniciar automaticamente la apliacion automaticamente la aplicaicon cuando detecta cambios guardados
+
+#✂️ Aliases
+
+los **import aliasses** tambien conocidos como _path aliasses_ o _module aliasses_ son atajos o alias que podemos configurar para simplificar la forma en que importamos en nuestra aplicación.

@@ -89,5 +89,9 @@ function onListening() {
     : 'port ' + addr.port;
 
   debug('🎤Listening on ' + bind);
+<<<<<<< HEAD:server/bin/www.js
   info(`✅ Server is listening on ${bind}`); //  CORREGIDO
+=======
+  info(`✅ Server is listening on ${bind}`); // ✅ CORREGIDO
+>>>>>>> 0d509a1383df1d1411429b173c2dfbfcf5d88343:bin/www.js
 }

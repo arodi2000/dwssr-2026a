@@ -4,6 +4,7 @@ import path from 'node:path';
 import cookieParser from 'cookie-parser'; 
 import logger from 'morgan'; 
 import {fileURLToPath} from 'url'; 
+import hbs from 'hbs';
 
 // Recreando variables de path para ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -22,19 +23,28 @@ var app = express();
 import indexRouter from '#routes/index.js';
 import usersRouter from '#routes/users.js';
 import authorRouter from '#routes/author.js'; 
+//importando el registrador del HELPERS
+import { registerViteHelper } from './lib/vite';
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+//registrandro helpers para el ENGINE
+registerViteHelper(hbs)
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+//.archivos estatticos de vite 
+if(process.env,NODE_ENV =="production"){
+  app.use(express.static(path.join(__dirname,'..','dist')))
+}
+//arhivos estatios backend
 app.use(express.static(path.join(__dirname, '../public')));
 console.log('Ruta de archivos estáticos:', path.join(__dirname, '../public'));
 
-
+//regustrando
 app.use(['/', '/index'], indexRouter);
 app.use('/users', usersRouter);
 app.use('/author', authorRouter);  

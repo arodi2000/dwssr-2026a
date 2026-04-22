@@ -16,7 +16,7 @@ export default defineConfig({
      //configuracion del bull
      build:{
         //directorio de salida
-        outdir:'.../dist',
+        outDir:'../dist',
         emptyOutDir: true,
         //generar un manifiesto
         manifest: true,

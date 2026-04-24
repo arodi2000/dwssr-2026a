@@ -1,31 +1,29 @@
-//importo la funcion de configuracion de vite
-import {defineConfig}from`vite`
-//importo un resolverdor de rutas
-import{resolve}from"node.path"
+//
+import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
-//exportar una instacias de configuracion
 export default defineConfig({
-    //directorio raiz de los arhivos funtes
-    root:'src',
-    //configuracion de servidor
-    // de desarrollo de front-end
-    server:{
-        port:5173,
-        strictPort: true   //no va a buscar otro puerto ,si esta ocupado es mejor que nos de un aviso que esta ocupado 
-     },
-     //configuracion del bull
-     build:{
-        //directorio de salida
-        outDir:'../dist',
-        emptyOutDir: true,
-        //generar un manifiesto
-        manifest: true,
-        rollOptions:{
-            input:{
-                main: resolve(__dirname,'src/main.js')
-            }
-        },
-     },
+  root: 'src',
+
+  server: {
+    port: 5173,
+    open: true,
+  },
+
+  build: {
+    outDir: '../dist',
+    emptyOutDir: true,
+
+    //CREar un manifest.json para que el servidor pueda encontrar los archivos generados
+    manifest: true,
+
+    //Configurar Rollup para que el punto de entrada sea main.js
+    rolldownOptions: {
+      input: {
+        main: resolve(__dirname, 'src/main.js'),
+      },
+    },
+  },
      //configurar para el desarrollo
      publicDir: false,
 })

@@ -1,71 +1,67 @@
 import createError from 'http-errors';
 import express from 'express';
-import path from 'node:path'; // Deja esta
+import path from 'node:path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import { fileURLToPath } from 'node:url'; // Usa también el prefijo node: aquí por consistencia
+import { fileURLToPath } from 'node:url';
 import hbs from 'hbs';
-// LA LÍNEA 7 DEBE DESAPARECER
+
+// Importación de rutas usando los alias configurados en package.json
+import indexRouter from '#routes/index.js';
+import usersRouter from '#routes/users.js';
+import authorRouter from '#routes/author.js';
+
+// Importando el registrador de HELPERS de Vite
+import { registerViteHelper } from './lib/vite.js';
 
 // Recreando variables de path para ES Modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-var app = express();
-// registro de las rutas a los enrutadores
-// require se utiliza para importar módulos en CommonJS, pero en ES Modules se utiliza import, 
-// por lo que se cambió la sintaxis de importación de las rutas. 
-// Además, se agregó la extensión .js a los archivos de rutas para que funcione correctamente con ES Modules.
-// var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
-// var authorRouter = require('./routes/author'); // Importamos el enrutador de author
+const app = express();
 
-// se cambio require por import y se agrego la extensión .js a los archivos de rutas para que funcione con ES Modules
-import indexRouter from '#routes/index.js';
-import usersRouter from '#routes/users.js';
-import authorRouter from '#routes/author.js';
-//importando el registrador del HELPERS
-import { registerViteHelper } from './lib/vite.js';
-
-// view engine setup
+// 1. Configuración del motor de vistas (HBS)
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-//registrandro helpers para el ENGINE
-registerViteHelper(hbs)
 
+// 2. Registro del helper de Vite para manejar assets dinámicos
+registerViteHelper(hbs);
+
+// 3. Middlewares básicos
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-//.archivos estatticos de vite 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, '..', 'dist')))
-}
-//arhivos estatios backend
-app.use(express.static(path.join(__dirname, '../public')));
-console.log('Ruta de archivos estáticos:', path.join(__dirname, '../public'));
 
-//regustrando
+// 4. Configuración de archivos estáticos
+// Si estamos en producción, servimos el build de Vite
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'dist')));
+}
+
+// Servimos archivos públicos del backend (imágenes, etc.)
+app.use(express.static(path.join(__dirname, '..', 'public')));
+
+// 5. Registro de rutas principales
 app.use(['/', '/index'], indexRouter);
 app.use('/users', usersRouter);
 app.use('/author', authorRouter);
 
-
-app.use(function (req, res, next) {
+// 6. Manejo de error 404
+app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
-//eslint-disable-next-line no-unused-vars
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
+// 7. Manejador de errores (ESLint corregido con _next)
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, _next) => {
+  // Solo proporcionamos el error detallado en desarrollo
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // Renderizamos la página de error
   res.status(err.status || 500);
   res.render('error');
 });
 
-// module.exports = app
-export default app; // Exportamos la aplicación usando ES Modules 
+export default app;

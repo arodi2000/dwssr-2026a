@@ -10,10 +10,12 @@ export function viteAssets() {
     const viteDevServer = process.env.VITE_DEV_SERVER || 'http://localhost:5173';
 
     if (isDev) {
-        return `
-          <script type="module" src="${viteDevServer}/@vite/client"></script>
-          <script type="module" src="${viteDevServer}/main.js"></script>
-        `;
+        // Dentro de tu función viteAssets() en la parte de isDev
+// Dentro de tu función viteAssets() en modo isDev
+return `
+  <script type="module" src="${viteDevServer}/@vite/client"></script>
+  <script type="module" src="${viteDevServer}/src/main.js"></script> 
+`;
     }
 
     const manifestPath = path.join(__dirname, '..', '..', 'dist', '.vite', 'manifest.json');

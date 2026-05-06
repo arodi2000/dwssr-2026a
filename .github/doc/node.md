@@ -52,3 +52,7 @@ Su funcion es observar archivos en el directorio de tu proyecto y reiniciar auto
 
 los **import aliasses** tambien conocidos como _path aliasses_ o _module aliasses_ son atajos o alias que podemos configurar para simplificar la forma en que importamos en nuestra aplicación.
 
+#Loggers
+_winston-daily-rotate-file_ es un transporte de winston que permite la rotacion automatica de archivos de logs
+basada en fechas.
+Esto evita que los archivos de log crezcan sin control.

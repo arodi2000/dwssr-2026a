@@ -13,6 +13,7 @@ import authorRouter from '#routes/author.js';
 
 // Importando el registrador de HELPERS de Vite
 import { registerViteHelper } from './lib/vite.js';
+import logger from './lib/winston.js';
 
 // Recreando variables de path para ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -49,12 +50,15 @@ app.use('/author', authorRouter);
 
 // 6. Manejo de error 404
 app.use((req, res, next) => {
+  logger.warn(`se consulto la ruta no encontrada${req.originalUrl}`)
   next(createError(404));
+
 });
 
 // 7. Manejador de errores (ESLint corregido con _next)
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, _next) => {
+  logger.error(`Error:${err.status || 500}->${err.message} `)
   // Solo proporcionamos el error detallado en desarrollo
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

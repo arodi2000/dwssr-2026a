@@ -1,37 +1,38 @@
 {
   "name": "dwssr-2026a",
   "version": "0.0.0",
-  "private": true,
   "type": "module",
+  "private": true,
   "scripts": {
     "start": "NODE_ENV=production node ./server/bin/www",
-    "dev": "cross-env DEBUG=dwssr:* nodemon ./server/bin/www",
-    "dev:vite": "vite",
+    "dev": "DEBUG=dwssr:* nodemon ./server/bin/www",
+    "dev:vite": "vite --host",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:vite\"",
-    "build": "vite build",
+    "build:front": "vite build",
     "preview": "npm run build:front && npm run start",
-    "lint": "npm run lint. back && npm run lint:front",
+    "lint": "npm run lint:back && npm run lint:front",
     "lint:back": "eslint \"server/*/.js\"",
     "lint:front": "eslint \"src/*/.js\"",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "clean:logs": "rm -rf ./logs/*.log"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "hbs": "~4.0.4",
+    "express": "^4.22.1",
+    "hbs": "^4.2.1",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "vite": "^7.3.1",
+    "morgan": "^1.10.1",
+    "vite": "^8.0.2",
     "winston": "^3.19.0",
     "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@tailwindcss/postcss": "^4.2.4",
     "@tailwindcss/vite": "^4.2.4",
     "autoprefixer": "^10.5.0",
     "concurrently": "^9.2.1",
-    "cross-env": "^10.1.0",
     "daisyui": "^5.5.19",
     "eslint": "^10.2.1",
     "eslint-config-prettier": "^10.1.8",
@@ -42,8 +43,7 @@
     "tailwindcss": "^4.2.4"
   },
   "imports": {
-    "#server/*": "./server/*",
-    "#routes/*": "./server/routes/*",
-    "#routes/index.js": "./server/routes/index.js"
+    "#server/": "./server/",
+    "#routes/": "./server/routes/"
   }
 }

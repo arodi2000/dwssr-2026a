@@ -7,6 +7,8 @@
 import app from '../app.js';
 import createDebug from 'debug';
 import http from 'node:http'; // ✅ CORREGIDO
+//importando el logger de winston
+import logger from '../lib/winston.js';
 
 const debug = createDebug('dwssr:server')
 const info = createDebug('dwssr:info')
@@ -14,7 +16,6 @@ const info = createDebug('dwssr:info')
 /**
  * Get port from environment and store in Express.
  */
-info('🔍Normalizing port')
 var port = normalizePort(process.env.PORT || '3000');
 info('💻port normalized: ' + port);
 app.set('port', port);
@@ -22,7 +23,7 @@ app.set('port', port);
 /**
  * Create HTTP server.
  */
-info('🚀 Starting server on port ' + port);
+logger.info(`🚀 Starting server on port ${port}`);
 var server = http.createServer(app);
 
 /**
@@ -66,11 +67,11 @@ function onError(error) {
 
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      logger.error(bind + ' requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      logger.error(bind + ' is already in use');
       process.exit(1);
       break;
     default:
@@ -89,5 +90,5 @@ function onListening() {
     : 'port ' + addr.port;
 
   debug('🎤Listening on ' + bind);
-  info(`✅ Server is listening on ${bind}`); // ✅ CORREGIDO
+  logger.info(`✅ Server is listening on ${bind}port`); // ✅ CORREGIDO
 }
